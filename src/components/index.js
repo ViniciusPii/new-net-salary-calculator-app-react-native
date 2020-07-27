@@ -1,4 +1,5 @@
+import Form from './Form';
 import Layout from './Layout';
 import Logo from './Logo';
 
-export {Layout, Logo};
+export {Form, Layout, Logo};

@@ -7,6 +7,12 @@ export const Layout = styled.KeyboardAvoidingView`
   background-color: ${({theme}) => theme.aquaBlue700};
 `;
 
+export const Container = styled.View`
+  flex: 1;
+  width: 90%;
+  justify-content: center;
+`;
+
 export const Status = styled(StatusBar).attrs(({theme}) => ({
   backgroundColor: theme.aquaBlue700,
   barStyle: 'light-content',
