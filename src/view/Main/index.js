@@ -1,16 +1,13 @@
 import React from 'react';
 import {Text, SafeAreaView} from 'react-native';
 
-import {Layout} from '../../components';
-
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import {Layout, Logo} from '../../components';
 
 const Main = () => {
   return (
     <Layout>
       <SafeAreaView>
-        <Text>Main</Text>
-        <Icon name="trash" />
+        <Logo />
       </SafeAreaView>
     </Layout>
   );
