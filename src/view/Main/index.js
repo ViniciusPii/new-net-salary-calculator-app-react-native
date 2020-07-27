@@ -1,14 +1,25 @@
-import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import React, {useState} from 'react';
 
-import {Layout, Logo} from '../../components';
+import {Layout, Logo, Form} from '../../components';
 
 const Main = () => {
+  const [salary, setSalary] = useState();
+  const [discounts, setDiscounts] = useState();
+
+  const handleSubmit = () => {
+    alert(`salario ${salary}, descontos ${discounts}`);
+  };
+
   return (
     <Layout>
-      <SafeAreaView>
-        <Logo />
-      </SafeAreaView>
+      <Logo />
+      <Form
+        salary={salary}
+        setSalary={setSalary}
+        discounts={discounts}
+        setDiscounts={setDiscounts}
+        onPress={handleSubmit}
+      />
     </Layout>
   );
 };
