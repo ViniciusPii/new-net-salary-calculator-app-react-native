@@ -9,7 +9,9 @@ export const Layout = styled.KeyboardAvoidingView`
 
 export const Container = styled.View`
   flex: 1;
-  width: 90%;
+  width: 100%;
+  top: 0;
+  align-items: center;
   justify-content: center;
 `;
 

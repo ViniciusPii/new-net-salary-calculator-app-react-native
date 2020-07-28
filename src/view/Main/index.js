@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
+import {Keyboard} from 'react-native';
 
-import {Layout, Logo, Form} from '../../components';
+import {Layout, Logo, Form, LisResult, Compose} from '../../components';
 
 const Main = () => {
   const [salary, setSalary] = useState();
   const [discounts, setDiscounts] = useState();
 
+  const [show, setShow] = useState(false);
+
   const handleSubmit = () => {
-    alert(`salario ${salary}, descontos ${discounts}`);
+    setShow(!show);
+    Keyboard.dismiss();
   };
 
   return (
@@ -18,8 +22,15 @@ const Main = () => {
         setSalary={setSalary}
         discounts={discounts}
         setDiscounts={setDiscounts}
+        show={show}
         onPress={handleSubmit}
       />
+      {show && (
+        <>
+          <LisResult />
+          <Compose />
+        </>
+      )}
     </Layout>
   );
 };
