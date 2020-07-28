@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const ResultContainer = styled.View`
   width: 90%;
-  margin-top: 30px;
+  margin: 30px 0 150px;
 `;
 
 export const Header = styled.View`

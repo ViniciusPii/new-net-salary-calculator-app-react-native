@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './styles';
-import {View} from 'react-native';
 
 const ListResult = () => {
   return (

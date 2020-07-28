@@ -27,8 +27,8 @@ const Main = () => {
       />
       {show && (
         <>
-          <LisResult />
           <Compose />
+          <LisResult />
         </>
       )}
     </Layout>

@@ -4,7 +4,7 @@ export const Container = styled.View`
   width: 90%;
   align-items: center;
   padding: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
   border-radius: 8px;
   box-shadow: 1px 1px 5px
     ${({theme, show}) => (show ? theme.grey300 : theme.ghost)};
