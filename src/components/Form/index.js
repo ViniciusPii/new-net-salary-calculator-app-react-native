@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './styles';
+import {Platform} from 'react-native';
 
 const Form = ({...props}) => {
   const {salary, setSalary, discounts, setDiscounts, onPress, show} = props;
@@ -11,15 +12,25 @@ const Form = ({...props}) => {
         value={salary}
         onChangeText={(t) => setSalary(t)}
         placeholder="Ex: 2500"
+        keyboardType="decimal-pad"
       />
       <S.Input
         value={discounts}
         onChangeText={(t) => setDiscounts(t)}
         placeholder="Outros descontos"
+        keyboardType="decimal-pad"
       />
-      <S.Button onPress={onPress}>
-        <S.ButtonText>Calcular</S.ButtonText>
-      </S.Button>
+      {Platform.OS === 'ios' ? (
+        <S.Button onPress={onPress}>
+          <S.ButtonText>Calcular</S.ButtonText>
+        </S.Button>
+      ) : (
+        <S.ButtonAndroid onPress={onPress}>
+          <S.ButtonContainer>
+            <S.ButtonText>Calcular</S.ButtonText>
+          </S.ButtonContainer>
+        </S.ButtonAndroid>
+      )}
     </S.Container>
   );
 };

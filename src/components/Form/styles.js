@@ -40,3 +40,15 @@ export const ButtonText = styled.Text`
   font-size: 18px;
   color: ${({theme}) => theme.white};
 `;
+
+export const ButtonAndroid = styled.TouchableNativeFeedback``;
+
+export const ButtonContainer = styled.View`
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 8px;
+  background-color: ${({theme}) => theme.aquaBlue700};
+`;
