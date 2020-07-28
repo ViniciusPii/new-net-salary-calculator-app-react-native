@@ -1,16 +1,22 @@
 import styled from 'styled-components/native';
 import {StatusBar} from 'react-native';
 
+export const Scroll = styled.ScrollView.attrs({
+  contentContainerStyle: {flexGrow: 1},
+})`
+  flex: 1;
+  width: 100%;
+`;
+
 export const Layout = styled.KeyboardAvoidingView`
   flex: 1;
   align-items: center;
   background-color: ${({theme}) => theme.aquaBlue700};
 `;
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   width: 100%;
-  top: 0;
   align-items: center;
   justify-content: center;
 `;

@@ -1,17 +1,24 @@
 import React from 'react';
 import * as S from './styles';
-import {View} from 'react-native';
 
-const ListResult = () => {
+const ListResult = ({...props}) => {
+  const {inss, salary} = props;
+
   return (
     <S.ResultContainer>
       <S.Header>
         <S.HeaderDesc>Salário Bruto</S.HeaderDesc>
-        <S.HeaderValue>R$ 2.500,00</S.HeaderValue>
+        <S.HeaderValue>{`R$ ${parseFloat(salary)
+          .toFixed(2)
+          .replace('.', ',')
+          .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`}</S.HeaderValue>
       </S.Header>
       <S.List>
         <S.ListDesc>Desc. INSS</S.ListDesc>
-        <S.ListValue>- R$ 221,64</S.ListValue>
+        <S.ListValue>{`- R$ ${parseFloat(inss)
+          .toFixed(2)
+          .replace('.', ',')
+          .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`}</S.ListValue>
       </S.List>
       <S.List>
         <S.ListDesc>Desc. IRPF</S.ListDesc>
