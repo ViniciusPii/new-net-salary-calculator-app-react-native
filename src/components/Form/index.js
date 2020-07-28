@@ -2,10 +2,10 @@ import React from 'react';
 import * as S from './styles';
 
 const Form = ({...props}) => {
-  const {salary, setSalary, discounts, setDiscounts, onPress} = props;
+  const {salary, setSalary, discounts, setDiscounts, onPress, show} = props;
 
   return (
-    <S.Container>
+    <S.Container elevation={10} show={show}>
       <S.FormTitle>Digite seu salário bruto</S.FormTitle>
       <S.Input
         value={salary}
