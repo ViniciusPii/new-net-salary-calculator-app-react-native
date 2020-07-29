@@ -9,7 +9,7 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding: 15px;
-  background-color: ${({theme}) => theme.placeholder};
+  background-color: ${({theme}) => theme.grey50};
 `;
 
 export const HeaderDesc = styled.Text`
