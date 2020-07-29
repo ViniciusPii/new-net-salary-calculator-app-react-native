@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <S.LogoContainer>
       <S.IconLogo />
-      <S.TextLogo>Calcula Fácil</S.TextLogo>
+      <S.TextLogo>Meu Salário</S.TextLogo>
     </S.LogoContainer>
   );
 };
