@@ -3,11 +3,13 @@ import {Keyboard} from 'react-native';
 
 import {Layout, Logo, Form, LisResult, Compose} from '../../components';
 
+import trackInss from '../../utils/inss';
+import trackIrpf from '../../utils/irpf';
+
 import {
+  calculateNetSalary,
   calculateTrack,
   calculateINSS,
-  calculateNetSalary,
-  calculateTrackIRPF,
   calculateIRPF,
 } from '../../utils/calcNetSalary';
 
@@ -38,12 +40,18 @@ const Main = () => {
     setBackupSalary(salary);
     setBkpDiscounts(discounts);
 
-    let track = calculateTrack(salary);
-    setInss(calculateINSS(salary, track));
+    let changeTrackInss = calculateTrack(salary, trackInss);
+    let resultInss = calculateINSS(salary, changeTrackInss, trackInss);
+    setInss(resultInss);
 
-    let trackIrpf = calculateTrackIRPF(salary - calculateINSS(salary, track));
+    let changeTrackIrpf = calculateTrack(salary - resultInss, trackIrpf);
 
-    setIrpf(calculateIRPF(salary - calculateINSS(salary, track), trackIrpf));
+    let resultIrpf = calculateIRPF(
+      salary - resultInss,
+      changeTrackIrpf,
+      trackIrpf,
+    );
+    setIrpf(resultIrpf);
 
     setShow(true);
   };

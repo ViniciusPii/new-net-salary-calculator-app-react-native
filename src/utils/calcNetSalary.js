@@ -1,16 +1,13 @@
-import trackInss from './inss';
-import trackIrpf from './irpf';
-
-export const calculateTrack = (salary) => {
+export const calculateTrack = (salary, changeTrack) => {
   let track;
 
-  if (salary < trackInss.minTrack.finalValue) {
+  if (salary < changeTrack.minTrack.finalValue) {
     track = 'minTrack';
-  } else if (salary <= trackInss.firstTrack.finalValue) {
+  } else if (salary <= changeTrack.firstTrack.finalValue) {
     track = 'firstTrack';
-  } else if (salary <= trackInss.secondTrack.finalValue) {
+  } else if (salary <= changeTrack.secondTrack.finalValue) {
     track = 'secondTrack';
-  } else if (salary <= trackInss.thirdTrack.finalValue) {
+  } else if (salary <= changeTrack.thirdTrack.finalValue) {
     track = 'thirdTrack';
   } else {
     track = 'maxTrack';
@@ -19,25 +16,7 @@ export const calculateTrack = (salary) => {
   return track;
 };
 
-export const calculateTrackIRPF = (salary) => {
-  let track;
-
-  if (salary < trackIrpf.minTrack.finalValue) {
-    track = 'minTrack';
-  } else if (salary <= trackIrpf.firstTrack.finalValue) {
-    track = 'firstTrack';
-  } else if (salary <= trackIrpf.secondTrack.finalValue) {
-    track = 'secondTrack';
-  } else if (salary <= trackIrpf.thirdTrack.finalValue) {
-    track = 'thirdTrack';
-  } else {
-    track = 'maxTrack';
-  }
-
-  return track;
-};
-
-export const calculateINSS = (salary, track) => {
+export const calculateINSS = (salary, track, trackInss) => {
   let inss;
 
   let referenceValue = trackInss[track].initialValue;
@@ -49,7 +28,7 @@ export const calculateINSS = (salary, track) => {
   return inss;
 };
 
-export const calculateIRPF = (salary, track) => {
+export const calculateIRPF = (salary, track, trackIrpf) => {
   let irpf;
 
   let multiplier = trackIrpf[track].multiplier;
