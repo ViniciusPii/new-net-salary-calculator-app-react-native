@@ -9,8 +9,7 @@ import trackIrpf from '../../utils/irpf';
 import {
   calculateNetSalary,
   calculateTrack,
-  calculateINSS,
-  calculateIRPF,
+  calculateTax,
 } from '../../utils/calcNetSalary';
 
 const Main = () => {
@@ -41,16 +40,16 @@ const Main = () => {
     setBkpDiscounts(discounts);
 
     let changeTrackInss = calculateTrack(salary, trackInss);
-    let resultInss = calculateINSS(salary, changeTrackInss, trackInss);
-    setInss(resultInss);
+    let resultInss = calculateTax(salary, changeTrackInss, trackInss);
+    setInss(resultInss.inss);
 
-    let changeTrackIrpf = calculateTrack(salary - resultInss, trackIrpf);
-    let resultIrpf = calculateIRPF(
-      salary - resultInss,
+    let changeTrackIrpf = calculateTrack(salary - resultInss.inss, trackIrpf);
+    let resultIrpf = calculateTax(
+      salary - resultInss.inss,
       changeTrackIrpf,
       trackIrpf,
     );
-    setIrpf(resultIrpf);
+    setIrpf(resultIrpf.irpf);
 
     setShow(true);
   };

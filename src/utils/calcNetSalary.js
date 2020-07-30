@@ -16,27 +16,19 @@ export const calculateTrack = (salary, changeTrack) => {
   return track;
 };
 
-export const calculateINSS = (salary, track, trackInss) => {
+export const calculateTax = (salary, track, changeTrack) => {
   let inss;
+  let irpf;
 
-  let referenceValue = trackInss[track].initialValue;
-  let multiplier = trackInss[track].multiplier;
-  let valuePerRange = trackInss[track].valuePerRange;
+  let referenceValue = changeTrack[track].initialValue;
+  let multiplier = changeTrack[track].multiplier;
+  let valuePerRange = changeTrack[track].valuePerRange;
 
   inss = (salary - referenceValue) * multiplier + valuePerRange;
 
-  return inss;
-};
-
-export const calculateIRPF = (salary, track, trackIrpf) => {
-  let irpf;
-
-  let multiplier = trackIrpf[track].multiplier;
-  let valuePerRange = trackIrpf[track].valuePerRange;
-
   irpf = salary * multiplier - valuePerRange;
 
-  return irpf;
+  return {inss, irpf};
 };
 
 export const calculateNetSalary = (salary, discounts, inss, irpf) => {
