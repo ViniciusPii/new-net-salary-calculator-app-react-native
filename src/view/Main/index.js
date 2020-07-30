@@ -16,7 +16,7 @@ const Main = () => {
   const [salary, setSalary] = useState();
   const [inss, setInss] = useState();
   const [irpf, setIrpf] = useState();
-  const [discounts, setDiscounts] = useState(0);
+  const [discounts, setDiscounts] = useState();
 
   const [bkpSalary, setBackupSalary] = useState();
   const [bkpDiscounts, setBkpDiscounts] = useState();
@@ -37,7 +37,7 @@ const Main = () => {
     }
 
     setBackupSalary(salary);
-    setBkpDiscounts(discounts);
+    setBkpDiscounts(discounts ? discounts : 0);
 
     let changeTrackInss = calculateTrack(salary, trackInss);
     let resultInss = calculateTax(salary, changeTrackInss, trackInss);
@@ -52,6 +52,9 @@ const Main = () => {
     setIrpf(resultIrpf.irpf);
 
     setShow(true);
+
+    setSalary('');
+    setDiscounts('');
   };
 
   return (

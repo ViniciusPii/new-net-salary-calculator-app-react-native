@@ -2,23 +2,27 @@ import React from 'react';
 import * as S from './styles';
 import {Platform} from 'react-native';
 
+import {formatDot, formatInputMask} from '../../utils/regex';
+
 const Form = ({...props}) => {
   const {salary, setSalary, discounts, setDiscounts, onPress, show} = props;
 
   return (
     <S.Container elevation={10} show={show}>
       <S.FormTitle>Digite seu salário bruto</S.FormTitle>
-      <S.Input
+      <S.InputMask
+        type={'money'}
+        options={{unit: 'R$ '}}
         value={salary}
-        onChangeText={(t) => setSalary(t)}
+        onChangeText={(t) => setSalary(formatInputMask(t))}
         placeholder="Ex: 2500"
-        keyboardType="decimal-pad"
       />
-      <S.Input
+      <S.InputMask
+        type={'money'}
+        options={{unit: 'R$ '}}
         value={discounts}
-        onChangeText={(t) => setDiscounts(t)}
-        placeholder="Outros descontos"
-        keyboardType="decimal-pad"
+        onChangeText={(t) => setDiscounts(formatInputMask(t))}
+        placeholder="Outros Descontos"
       />
       {Platform.OS === 'ios' ? (
         <S.Button onPress={onPress}>

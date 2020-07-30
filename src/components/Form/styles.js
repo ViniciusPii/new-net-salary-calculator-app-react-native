@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {TextInputMask} from 'react-native-masked-text';
 
 export const Container = styled.View`
   width: 90%;
@@ -17,12 +18,13 @@ export const FormTitle = styled.Text`
   color: ${({theme}) => theme.aquaBlue700};
 `;
 
-export const Input = styled.TextInput`
+export const InputMask = styled(TextInputMask)`
   width: 100%;
   height: 40px;
   margin-top: 15px;
   padding-left: 10px;
   border-radius: 8px;
+  color: ${({theme}) => theme.neutral800};
   background-color: ${({theme}) => theme.placeholder};
 `;
 
