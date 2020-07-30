@@ -45,7 +45,6 @@ const Main = () => {
     setInss(resultInss);
 
     let changeTrackIrpf = calculateTrack(salary - resultInss, trackIrpf);
-
     let resultIrpf = calculateIRPF(
       salary - resultInss,
       changeTrackIrpf,
