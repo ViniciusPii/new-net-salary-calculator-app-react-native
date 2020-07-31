@@ -1,28 +1,28 @@
-export const calculateTrack = (salary, changeTrack) => {
-  let track;
+export const calculateSalaryRange = (salary, taxTable) => {
+  let salaryRange;
 
-  if (salary < changeTrack.minTrack.finalValue) {
-    track = 'minTrack';
-  } else if (salary <= changeTrack.firstTrack.finalValue) {
-    track = 'firstTrack';
-  } else if (salary <= changeTrack.secondTrack.finalValue) {
-    track = 'secondTrack';
-  } else if (salary <= changeTrack.thirdTrack.finalValue) {
-    track = 'thirdTrack';
+  if (salary < taxTable.minTrack.finalValue) {
+    salaryRange = 'minTrack';
+  } else if (salary <= taxTable.firstTrack.finalValue) {
+    salaryRange = 'firstTrack';
+  } else if (salary <= taxTable.secondTrack.finalValue) {
+    salaryRange = 'secondTrack';
+  } else if (salary <= taxTable.thirdTrack.finalValue) {
+    salaryRange = 'thirdTrack';
   } else {
-    track = 'maxTrack';
+    salaryRange = 'maxTrack';
   }
 
-  return track;
+  return salaryRange;
 };
 
-export const calculateTax = (salary, track, changeTrack) => {
+export const calculateTax = (salary, salaryRange, taxTable) => {
   let inss;
   let irpf;
 
-  let referenceValue = changeTrack[track].initialValue;
-  let multiplier = changeTrack[track].multiplier;
-  let valuePerRange = changeTrack[track].valuePerRange;
+  let referenceValue = taxTable[salaryRange].initialValue;
+  let multiplier = taxTable[salaryRange].multiplier;
+  let valuePerRange = taxTable[salaryRange].valuePerRange;
 
   inss = (salary - referenceValue) * multiplier + valuePerRange;
 
@@ -31,6 +31,6 @@ export const calculateTax = (salary, track, changeTrack) => {
   return {inss, irpf};
 };
 
-export const calculateNetSalary = (salary, discounts, inss, irpf) => {
-  return salary - discounts - inss - irpf;
+export const calculateNetSalary = (grossSalary, otherDiscounts, inss, irpf) => {
+  return grossSalary - otherDiscounts - inss - irpf;
 };

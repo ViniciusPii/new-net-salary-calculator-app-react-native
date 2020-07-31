@@ -3,64 +3,67 @@ import {Keyboard} from 'react-native';
 
 import {Layout, Logo, Form, LisResult, Compose} from '../../components';
 
-import trackInss from '../../utils/inss';
-import trackIrpf from '../../utils/irpf';
+import inssTable from '../../utils/inss';
+import irpfTable from '../../utils/irpf';
 
 import {
   calculateNetSalary,
-  calculateTrack,
+  calculateSalaryRange,
   calculateTax,
 } from '../../utils/calcNetSalary';
 
 const Main = () => {
-  const [salary, setSalary] = useState();
+  const [grossSalary, setGrossSalary] = useState();
   const [inss, setInss] = useState();
   const [irpf, setIrpf] = useState();
-  const [discounts, setDiscounts] = useState();
+  const [otherDiscounts, setOtherDiscounts] = useState();
 
-  const [bkpSalary, setBackupSalary] = useState();
-  const [bkpDiscounts, setBkpDiscounts] = useState();
+  const [bkpGrossSalary, setBkpGrossSalary] = useState();
+  const [bkpOtherDiscounts, setBkpOtherDiscounts] = useState();
 
   const [show, setShow] = useState(false);
 
   const handleSubmit = () => {
     Keyboard.dismiss();
 
-    if (!salary) {
+    if (!grossSalary) {
       alert('Salário Bruto Obrigatório!');
       setShow(false);
       return;
     }
 
-    setBackupSalary(salary);
-    setBkpDiscounts(discounts ? discounts : 0);
+    setBkpGrossSalary(grossSalary);
+    setBkpOtherDiscounts(otherDiscounts ? otherDiscounts : 0);
 
-    let changeTrackInss = calculateTrack(salary, trackInss);
-    let resultInss = calculateTax(salary, changeTrackInss, trackInss);
-    setInss(resultInss.inss);
+    let inssSalaryRange = calculateSalaryRange(grossSalary, inssTable);
+    let inssValue = calculateTax(grossSalary, inssSalaryRange, inssTable);
+    setInss(inssValue.inss);
 
-    let changeTrackIrpf = calculateTrack(salary - resultInss.inss, trackIrpf);
-    let resultIrpf = calculateTax(
-      salary - resultInss.inss,
-      changeTrackIrpf,
-      trackIrpf,
+    let irpfSalaryRange = calculateSalaryRange(
+      grossSalary - inssValue.inss,
+      irpfTable,
     );
-    setIrpf(resultIrpf.irpf);
+    let irpfValue = calculateTax(
+      grossSalary - inssValue.inss,
+      irpfSalaryRange,
+      irpfTable,
+    );
+    setIrpf(irpfValue.irpf);
 
     setShow(true);
 
-    setSalary('');
-    setDiscounts('');
+    setGrossSalary('');
+    setOtherDiscounts('');
   };
 
   return (
     <Layout>
       <Logo />
       <Form
-        salary={salary}
-        setSalary={setSalary}
-        discounts={discounts}
-        setDiscounts={setDiscounts}
+        grossSalary={grossSalary}
+        setGrossSalary={setGrossSalary}
+        otherDiscounts={otherDiscounts}
+        setOtherDiscounts={setOtherDiscounts}
         show={show}
         onPress={handleSubmit}
       />
@@ -70,9 +73,14 @@ const Main = () => {
           <LisResult
             inss={inss}
             irpf={irpf}
-            salary={bkpSalary}
-            discounts={bkpDiscounts}
-            netSalary={calculateNetSalary(bkpSalary, bkpDiscounts, inss, irpf)}
+            grossSalary={bkpGrossSalary}
+            otherDiscounts={bkpOtherDiscounts}
+            netSalary={calculateNetSalary(
+              bkpGrossSalary,
+              bkpOtherDiscounts,
+              inss,
+              irpf,
+            )}
           />
         </>
       )}

@@ -5,7 +5,14 @@ import {Platform} from 'react-native';
 import {formatInputMask} from '../../utils/regex';
 
 const Form = ({...props}) => {
-  const {salary, setSalary, discounts, setDiscounts, onPress, show} = props;
+  const {
+    grossSalary,
+    setGrossSalary,
+    otherDiscounts,
+    setOtherDiscounts,
+    onPress,
+    show,
+  } = props;
 
   return (
     <S.Container elevation={10} show={show}>
@@ -13,15 +20,15 @@ const Form = ({...props}) => {
       <S.InputMask
         type={'money'}
         options={{unit: 'R$ '}}
-        value={salary}
-        onChangeText={(t) => setSalary(formatInputMask(t))}
+        value={grossSalary}
+        onChangeText={(t) => setGrossSalary(formatInputMask(t))}
         placeholder="Ex: 2500"
       />
       <S.InputMask
         type={'money'}
         options={{unit: 'R$ '}}
-        value={discounts}
-        onChangeText={(t) => setDiscounts(formatInputMask(t))}
+        value={otherDiscounts}
+        onChangeText={(t) => setOtherDiscounts(formatInputMask(t))}
         placeholder="Outros Descontos"
       />
       {Platform.OS === 'ios' ? (

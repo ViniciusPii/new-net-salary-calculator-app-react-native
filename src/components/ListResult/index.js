@@ -4,13 +4,13 @@ import * as S from './styles';
 import {formatMoney} from '../../utils/regex';
 
 const ListResult = ({...props}) => {
-  const {inss, salary, discounts, netSalary, irpf} = props;
+  const {inss, grossSalary, otherDiscounts, netSalary, irpf} = props;
 
   return (
     <S.ResultContainer>
       <S.Header>
         <S.HeaderDesc>Salário Bruto</S.HeaderDesc>
-        <S.HeaderValue>R$ {formatMoney(salary)}</S.HeaderValue>
+        <S.HeaderValue>R$ {formatMoney(grossSalary)}</S.HeaderValue>
       </S.Header>
       <S.List>
         <S.ListDesc>Desc. INSS</S.ListDesc>
@@ -27,7 +27,7 @@ const ListResult = ({...props}) => {
       <S.List>
         <S.ListDesc>Outros Descontos</S.ListDesc>
         <S.ListValue>
-          {discounts ? `- R$ ${formatMoney(discounts)}` : '--'}
+          {otherDiscounts ? `- R$ ${formatMoney(otherDiscounts)}` : '--'}
         </S.ListValue>
       </S.List>
       <S.Result>
