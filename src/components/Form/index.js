@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import {Platform} from 'react-native';
 
-import {formatDot, formatInputMask} from '../../utils/regex';
+import {formatInputMask} from '../../utils/regex';
 
 const Form = ({...props}) => {
   const {salary, setSalary, discounts, setDiscounts, onPress, show} = props;

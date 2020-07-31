@@ -27,12 +27,8 @@ const Main = () => {
     Keyboard.dismiss();
 
     if (!salary) {
-      alert('Preencha ao menos o campo Salário Bruto!');
-      return;
-    }
-
-    if (isNaN(salary) || salary < 0) {
-      alert('Digite um numero válido!');
+      alert('Salário Bruto Obrigatório!');
+      setShow(false);
       return;
     }
 
